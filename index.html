@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Fusion - Your Style Destination</title>
+    <style>
+        /* Custom font import for 'Inter' */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8fafc; /* Light gray background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Message Box Styling */
+        #messageBox {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            text-align: center;
+            font-weight: 500;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+
+        #messageBox.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            padding: 1rem; /* p-4 */
+        }
+
+        nav {
+            max-width: 1280px; /* container mx-auto */
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a.site-title {
+            font-size: 2.25rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: #1f2937; /* text-gray-800 */
+            border-radius: 0.375rem; /* rounded-md */
+            padding: 0.5rem; /* p-2 */
+            transition-property: color;
+            transition-duration: 300ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a.site-title:hover {
+            color: #111827; /* hover:text-gray-900 */
+        }
+
+        nav div.nav-links {
+            margin-top: 1rem; /* mt-4 */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem; /* gap-4 */
+        }
+
+        nav div.nav-links a {
+            color: #4b5563; /* text-gray-600 */
+            font-weight: 500; /* font-medium */
+            padding: 0.5rem 0.75rem; /* px-3 py-2 */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition-property: color;
+            transition-duration: 300ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav div.nav-links a:hover {
+            color: #4f46e5; /* hover:text-indigo-600 */
+        }
+
+        /* Responsive Navigation */
+        @media (min-width: 768px) {
+            header {
+                padding-left: 2rem; /* md:px-8 */
+                padding-right: 2rem; /* md:px-8 */
+            }
+            nav {
+                flex-direction: row; /* md:flex-row */
+            }
+            nav div.nav-links {
+                margin-top: 0; /* md:mt-0 */
+            }
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            background-color: #4f46e5; /* bg-indigo-700 */
+            color: #ffffff;
+            padding-top: 5rem; /* py-20 */
+            padding-bottom: 5rem; /* py-20 */
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+            text-align: center;
+            flex-grow: 1; /* flex-grow */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 1280px; /* container mx-auto */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem; /* text-5xl */
+            font-weight: 800; /* font-extrabold */
+            margin-bottom: 1.5rem; /* mb-6 */
+            line-height: 1.25; /* leading-tight */
+        }
+
+        .hero-content p {
+            font-size: 1.25rem; /* text-xl */
+            margin-bottom: 2rem; /* mb-8 */
+            max-width: 42rem; /* max-w-2xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section button {
+            background-color: #ffffff;
+            color: #4f46e5; /* text-indigo-700 */
+            font-weight: 700; /* font-bold */
+            padding: 0.75rem 2rem; /* py-3 px-8 */
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition-property: all;
+            transition-duration: 300ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-section button:hover {
+            background-color: #f3f4f6; /* hover:bg-gray-100 */
+            transform: scale(1.05); /* hover:scale-105 */
+        }
+
+        /* Responsive Hero Section */
+        @media (min-width: 768px) {
+            .hero-section {
+                padding-left: 2rem; /* md:px-8 */
+                padding-right: 2rem; /* md:px-8 */
+            }
+            .hero-content h1 {
+                font-size: 3.75rem; /* md:text-6xl */
+            }
+            .hero-content p {
+                font-size: 1.5rem; /* md:text-2xl */
+            }
+        }
+
+        /* Products Section Styling */
+        .products-section {
+            padding-top: 4rem; /* py-16 */
+            padding-bottom: 4rem; /* py-16 */
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+            background-color: #f9fafb; /* bg-gray-50 */
+        }
+
+        .products-section .container {
+            max-width: 1280px; /* container mx-auto */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .products-section h2 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            text-align: center;
+            color: #1f2937; /* text-gray-800 */
+            margin-bottom: 3rem; /* mb-12 */
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* grid-cols-1 */
+            gap: 2rem; /* gap-8 */
+        }
+
+        /* Responsive Product Grid */
+        @media (min-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr); /* sm:grid-cols-2 */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
+            }
+        }
+
+        /* Product Card Styling */
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            overflow: hidden;
+            transition-property: transform;
+            transition-duration: 300ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: scale(1.05); /* hover:scale-105 */
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 16rem; /* h-64 */
+            object-fit: cover; /* object-cover */
+        }
+
+        .product-card-content {
+            padding: 1.5rem; /* p-6 */
+        }
+
+        .product-card-content h3 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: #1f2937; /* text-gray-800 */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+
+        .product-card-content p {
+            color: #4b5563; /* text-gray-600 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+
+        .product-card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-card-actions .price {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: #4f46e5; /* text-indigo-600 */
+        }
+
+        .product-card-actions button {
+            background-color: #4f46e5; /* bg-indigo-600 */
+            color: #ffffff;
+            padding: 0.5rem 1.5rem; /* py-2 px-6 */
+            border-radius: 9999px; /* rounded-full */
+            transition-property: background-color;
+            transition-duration: 300ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-md */
+            border: none;
+            cursor: pointer;
+        }
+
+        .product-card-actions button:hover {
+            background-color: #4338ca; /* hover:bg-indigo-700 */
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #1f2937; /* bg-gray-800 */
+            color: #ffffff;
+            padding-top: 2rem; /* py-8 */
+            padding-bottom: 2rem; /* py-8 */
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+            margin-top: auto; /* mt-auto */
+        }
+
+        footer .container {
+            max-width: 1280px; /* container mx-auto */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer div.footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; /* space-x-6 */
+            margin-top: 1rem; /* mt-4 */
+        }
+
+        footer div.footer-links a {
+            color: #9ca3af; /* text-gray-400 */
+            transition-property: color;
+            transition-duration: 300ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        footer div.footer-links a:hover {
+            color: #ffffff; /* hover:text-white */
+        }
+
+        /* Responsive Footer */
+        @media (min-width: 768px) {
+            footer {
+                padding-left: 2rem; /* md:px-8 */
+                padding-right: 2rem; /* md:px-8 */
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Message Box Element -->
+    <div id="messageBox"></div>
+
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <a href="#" class="site-title">Fashion Fusion</a>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>
+                Discover Your Perfect Style
+            </h1>
+            <p>
+                Step into the world of fashion with our curated collection.
+            </p>
+            <button id="shopNowBtn">
+                Shop Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2>Our Latest Arrivals</h2>
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card">
+                    <img src="https://placehold.co/600x400/FFC0CB/000000?text=Summer+Dress" alt="Summer Dress">
+                    <div class="product-card-content">
+                        <h3>Elegant Summer Dress</h3>
+                        <p>Light and breathable, perfect for sunny days.</p>
+                        <div class="product-card-actions">
+                            <span class="price">₹1999</span>
+                            <button class="addToCartBtn" data-product="Elegant Summer Dress">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card">
+                    <img src="https://placehold.co/600x400/ADD8E6/000000?text=Stylish+Jacket" alt="Stylish Jacket">
+                    <div class="product-card-content">
+                        <h3>Classic Denim Jacket</h3>
+                        <p>A timeless piece for any wardrobe.</p>
+                        <div class="product-card-actions">
+                            <span class="price">₹3499</span>
+                            <button class="addToCartBtn" data-product="Classic Denim Jacket">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card">
+                    <img src="https://placehold.co/600x400/90EE90/000000?text=Casual+T-Shirt" alt="Casual T-Shirt">
+                    <div class="product-card-content">
+                        <h3>Comfortable Cotton Tee</h3>
+                        <p>Everyday comfort, ultimate style.</p>
+                        <div class="product-card-actions">
+                            <span class="price">₹999</span>
+                            <button class="addToCartBtn" data-product="Comfortable Cotton Tee">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Fashion Fusion. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to display a custom message box
+        function showMessage(message, type = 'success') {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+
+            // Set background color based on message type (optional)
+            if (type === 'success') {
+                messageBox.style.backgroundColor = '#4CAF50'; /* Green */
+            } else if (type === 'error') {
+                messageBox.style.backgroundColor = '#f44336'; /* Red */
+            } else {
+                messageBox.style.backgroundColor = '#2196F3'; /* Blue */
+            }
+
+            messageBox.classList.add('show');
+
+            // Automatically hide after 3 seconds
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000);
+        }
+
+        // Event listener for the "Shop Now" button
+        document.getElementById('shopNowBtn').addEventListener('click', function() {
+            showMessage('Welcome to Fashion Fusion! Happy Shopping!', 'success');
+        });
+
+        // Event listeners for "Add to Cart" buttons
+        document.querySelectorAll('.addToCartBtn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.dataset.product;
+                showMessage(`${productName} added to cart!`, 'success');
+            });
+        });
+    </script>
+</body>
+</html>
