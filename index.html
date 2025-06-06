@@ -344,7 +344,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen"><!-- Google Tag Manager (noscript) -->
+<body class="flex flex-col min-h-screen">
+    <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8RVZC45"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
@@ -354,24 +355,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Header Section -->
     <header>
         <nav>
-            <a href="#" class="site-title">Fashion Fusion</a>
+            <a href="#hero-section" class="site-title">Fashion Fusion</a>
             <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
+                <a href="#hero-section">Home</a>
+                <a href="#products-section">Shop</a>
                 <a href="#">About Us</a>
-                <a href="#">Contact</a>
+                <a href="#footer-section">Contact</a>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section" id="hero-section">
         <div class="hero-content">
             <h1>
                 Discover Your Perfect Style
             </h1>
             <p>
-                Step into the world of fashion with our curated collection.
+                Step into the world of fashion with our curated collection. Explore our <a href="#products-section" style="color: #ffffff; text-decoration: underline; font-weight: 600;">latest arrivals</a>.
             </p>
             <button id="shopNowBtn">
                 Shop Now
@@ -380,7 +381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- Products Section -->
-    <section class="products-section">
+    <section class="products-section" id="products-section">
         <div class="container">
             <h2>Our Latest Arrivals</h2>
             <div class="product-grid">
@@ -433,7 +434,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- Footer Section -->
-    <footer>
+    <footer id="footer-section">
         <div class="container">
             <p>&copy; 2025 Fashion Fusion. All rights reserved.</p>
             <div class="footer-links">
